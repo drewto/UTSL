@@ -22,6 +22,7 @@ def main():
 	tweets_file = open(tweets_file_filename, "r")
 	output_file = open(sentiment_tweets_output_filename, "w+")
 	tweet_sentiment = {}
+	overall_sentiment = 0
 	for line in tweets_file:
 		tweet = json.loads(line)
 		text = tweet['text'].split(" ")
@@ -29,9 +30,9 @@ def main():
 		for word in text:
 			if word in term_sentiments:
 				sentiment += term_sentiments[word]
+		overall_sentiment += sentiment
 		tweet['sentiment'] = sentiment
 		output_file.write(json.dumps(tweet)+'\n')
-		print("Text: " + tweet['text'] + "\nSentiment: " + str(sentiment) + '\n')
 		tweet_sentiment[tweet['text']] = sentiment
 		bar.next()
 	bar.finish()
@@ -55,7 +56,7 @@ def main():
 				new_text.append(word)
 		tweet = " ".join(new_text)
 		sorted_sentiments_file.write(str(rating) + ": " + tweet + '\n\n\n')
-
+	print("The overall sentiment regarding your search terms is: " + str(overall_sentiment))
 
 
 
