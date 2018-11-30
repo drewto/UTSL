@@ -118,15 +118,19 @@ def main():
 		print("\taccess_token: [access_token]")
 		print("\taccess_secret: [access_secret]")
 		exit(0)
+
+	# Set up scrape words
+	scrape_words = read_scrape_words("config_files/scrape_words.txt")
+	print("scrape words (search terms):")
+	for word in scrape_words:
+		print("\t- " + word)
+		
 	# API initial connection and setup
 	auth = OAuthHandler(consumer_key, consumer_secret)
 	auth.set_access_token(access_token, access_secret)
 	api = tweepy.API(auth)
 	twitter_stream = Stream(auth, MyListener())
-	scrape_words = read_scrape_words("config_files/scrape_words.txt")
-	print("scrape words (search terms):")
-	for word in scrape_words:
-		print("\t- " + word)
+	
 	twitter_stream.filter(track=scrape_words)
 	
 

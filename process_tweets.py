@@ -136,12 +136,11 @@ def compute_semantic_orientation(pmi, p_t):
 	return semantic_orientation
 
 def main():
-	if os.path.exists(file_path) == False:
-		nltk.download('stopwords')
-
 	# Set filenames...
 	input_filename = "data_files/scraped_tweets.json"
 	preprocess_stop_terms_filename = "config_files/preprocess_stop_terms.txt"
+
+	nltk.download('stopwords')
 
 	if (os.path.exists(input_filename) == False):
 		exit(0)
