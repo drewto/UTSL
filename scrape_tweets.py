@@ -73,11 +73,13 @@ def prune_data(data):
 
 	# Extract the full text
 	if 'retweeted_status' in json_data:
-		new_json_data['text'] = json_data['retweeted_status']['extended_tweet']['full_text']
+		new_json_data['text'] = json_data['retweeted_status']['extended_tweet']['full_text'].rstrip()
 	elif 'text' not in json_data:
 		return 0
+	elif json_data['truncated'] == True:
+		new_json_data['text'] = json_data['extended_tweet']['full_text']
 	else: 
-		new_json_data['text'] = json_data['text']
+		new_json_data['text'] = json_data['text'].rstrip()
 
 	# Extract user stuff
 	new_json_data['user_id'] = json_data['user']['id']

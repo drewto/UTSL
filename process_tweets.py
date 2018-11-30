@@ -40,6 +40,13 @@ def file_len(fname):
 			pass
 	return i + 1
 
+def is_number(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
+
 def tokenize(s):
 	return tokens_re.findall(s)
  
@@ -53,7 +60,7 @@ def preprocess(s, stop_terms, lowercase=True):
 		tokens = [token if emoticon_re.search(token) else token.lower() for token in tokens]
 	new_tokens = []
 	for token in tokens:
-		if ((token not in stop_terms) and (not token.startswith(('#','@','https://t.co/'))) and (not token == 'amp')):
+		if ((token not in stop_terms) and (not token.startswith(('#','@','https://t.co/'))) and (not token == 'amp') and (not is_number(token))):
 			new_tokens.append(token)
 	return new_tokens
 
@@ -194,12 +201,12 @@ def main():
 	top_neg = semantic_sorted[-5:]
 	top_neg.reverse()
 	
-	print("\nTop positive terms associated with the search term:\nword: rating")
+	print("\nTop positive terms associated with the search term:")
 	for item in top_pos:
 		(word, rating) = item
 		print(word + ": " + str(rating))
 
-	print("\nTop negative terms associated with the search term:\nword: rating")
+	print("\nTop negative terms associated with the search term:")
 	for item in top_neg:
 		(word, rating) = item
 		print(word + ": " + str(rating))
