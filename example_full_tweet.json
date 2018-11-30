@@ -1,0 +1,192 @@
+{
+  "created_at": "Fri Nov 30 00:30:13 +0000 2018",
+  "id": 1068301134572503040,
+  "id_str": "1068301134572503040",
+  "text": "RT @NatashaBertrand: Why did Cohen lie? Because the truth is evidence that Trump was compromised by Russia while Putin plotted to attack th…",
+  "source": "<a href=\"http://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android</a>",
+  "truncated": false,
+  "in_reply_to_status_id": null,
+  "in_reply_to_status_id_str": null,
+  "in_reply_to_user_id": null,
+  "in_reply_to_user_id_str": null,
+  "in_reply_to_screen_name": null,
+  "user": {
+    "id": 2899626219,
+    "id_str": "2899626219",
+    "name": "Silent Wolf",
+    "screen_name": "BlkKnight14",
+    "location": "Philadelphia, PA",
+    "url": null,
+    "description": null,
+    "translator_type": "none",
+    "protected": false,
+    "verified": false,
+    "followers_count": 388,
+    "friends_count": 822,
+    "listed_count": 26,
+    "favourites_count": 1558,
+    "statuses_count": 29333,
+    "created_at": "Sun Nov 30 19:45:58 +0000 2014",
+    "utc_offset": null,
+    "time_zone": null,
+    "geo_enabled": true,
+    "lang": "en",
+    "contributors_enabled": false,
+    "is_translator": false,
+    "profile_background_color": "C0DEED",
+    "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_tile": false,
+    "profile_link_color": "1DA1F2",
+    "profile_sidebar_border_color": "C0DEED",
+    "profile_sidebar_fill_color": "DDEEF6",
+    "profile_text_color": "333333",
+    "profile_use_background_image": true,
+    "profile_image_url": "http://pbs.twimg.com/profile_images/830929910352982017/zIJusvaH_normal.jpg",
+    "profile_image_url_https": "https://pbs.twimg.com/profile_images/830929910352982017/zIJusvaH_normal.jpg",
+    "profile_banner_url": "https://pbs.twimg.com/profile_banners/2899626219/1486944225",
+    "default_profile": true,
+    "default_profile_image": false,
+    "following": null,
+    "follow_request_sent": null,
+    "notifications": null
+  },
+  "geo": null,
+  "coordinates": null,
+  "place": null,
+  "contributors": null,
+  "retweeted_status": {
+    "created_at": "Thu Nov 29 21:58:46 +0000 2018",
+    "id": 1068263022358081537,
+    "id_str": "1068263022358081537",
+    "text": "Why did Cohen lie? Because the truth is evidence that Trump was compromised by Russia while Putin plotted to attack… https://t.co/eJeOXwr126",
+    "source": "<a href=\"http://twitter.com\" rel=\"nofollow\">Twitter Web Client</a>",
+    "truncated": true,
+    "in_reply_to_status_id": null,
+    "in_reply_to_status_id_str": null,
+    "in_reply_to_user_id": null,
+    "in_reply_to_user_id_str": null,
+    "in_reply_to_screen_name": null,
+    "user": {
+      "id": 372536101,
+      "id_str": "372536101",
+      "name": "Natasha Bertrand",
+      "screen_name": "NatashaBertrand",
+      "location": "Washington, DC",
+      "url": "https://www.theatlantic.com/author/natasha-bertrand/",
+      "description": "Staff writer @TheAtlantic covering national security & politics. @MSNBC contributor. Send tips: nbertrand@theatlantic.com nbertrand@protonmail.com",
+      "translator_type": "regular",
+      "protected": false,
+      "verified": true,
+      "followers_count": 344891,
+      "friends_count": 4071,
+      "listed_count": 3944,
+      "favourites_count": 25176,
+      "statuses_count": 18456,
+      "created_at": "Mon Sep 12 23:21:14 +0000 2011",
+      "utc_offset": null,
+      "time_zone": null,
+      "geo_enabled": false,
+      "lang": "en",
+      "contributors_enabled": false,
+      "is_translator": false,
+      "profile_background_color": "C6E2EE",
+      "profile_background_image_url": "http://abs.twimg.com/images/themes/theme2/bg.gif",
+      "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme2/bg.gif",
+      "profile_background_tile": false,
+      "profile_link_color": "1F97C7",
+      "profile_sidebar_border_color": "C6E2EE",
+      "profile_sidebar_fill_color": "DAECF4",
+      "profile_text_color": "663B12",
+      "profile_use_background_image": true,
+      "profile_image_url": "http://pbs.twimg.com/profile_images/1057428298484060160/aYGcKQJd_normal.jpg",
+      "profile_image_url_https": "https://pbs.twimg.com/profile_images/1057428298484060160/aYGcKQJd_normal.jpg",
+      "profile_banner_url": "https://pbs.twimg.com/profile_banners/372536101/1514897169",
+      "default_profile": false,
+      "default_profile_image": false,
+      "following": null,
+      "follow_request_sent": null,
+      "notifications": null
+    },
+    "geo": null,
+    "coordinates": null,
+    "place": null,
+    "contributors": null,
+    "is_quote_status": false,
+    "extended_tweet": {
+      "full_text": "Why did Cohen lie? Because the truth is evidence that Trump was compromised by Russia while Putin plotted to attack the election. (Offering Trump \"lucrative real estate\" deals was part of the Kremlin's \"cultivation operation\" for Trump, per the dossier.) https://t.co/sEOgPLI5rn",
+      "display_text_range": [
+        0,
+        278
+      ],
+      "entities": {
+        "hashtags": [],
+        "urls": [
+          {
+            "url": "https://t.co/sEOgPLI5rn",
+            "expanded_url": "https://www.theatlantic.com/politics/archive/2018/11/former-trump-aide-michael-cohen-admits-lying-congress/577003/",
+            "display_url": "theatlantic.com/politics/archi…",
+            "indices": [
+              255,
+              278
+            ]
+          }
+        ],
+        "user_mentions": [],
+        "symbols": []
+      }
+    },
+    "quote_count": 137,
+    "reply_count": 225,
+    "retweet_count": 3108,
+    "favorite_count": 6268,
+    "entities": {
+      "hashtags": [],
+      "urls": [
+        {
+          "url": "https://t.co/eJeOXwr126",
+          "expanded_url": "https://twitter.com/i/web/status/1068263022358081537",
+          "display_url": "twitter.com/i/web/status/1…",
+          "indices": [
+            117,
+            140
+          ]
+        }
+      ],
+      "user_mentions": [],
+      "symbols": []
+    },
+    "favorited": false,
+    "retweeted": false,
+    "possibly_sensitive": false,
+    "filter_level": "low",
+    "lang": "en"
+  },
+  "is_quote_status": false,
+  "quote_count": 0,
+  "reply_count": 0,
+  "retweet_count": 0,
+  "favorite_count": 0,
+  "entities": {
+    "hashtags": [],
+    "urls": [],
+    "user_mentions": [
+      {
+        "screen_name": "NatashaBertrand",
+        "name": "Natasha Bertrand",
+        "id": 372536101,
+        "id_str": "372536101",
+        "indices": [
+          3,
+          19
+        ]
+      }
+    ],
+    "symbols": []
+  },
+  "favorited": false,
+  "retweeted": false,
+  "filter_level": "low",
+  "lang": "en",
+  "timestamp_ms": "1543537813214"
+}
