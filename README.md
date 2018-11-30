@@ -34,7 +34,7 @@ Create a key file named "creds.txt" that looks like the following in the UTSL di
 
 I was roughly following the instructions in this tutorial to complete the sentiment analysis:
 
-		https://marcobonzanini.com/2015/03/23/mining-twitter-data-with-python-part-4-rugby-and-term-co-occurrences/
+	https://marcobonzanini.com/2015/03/23/mining-twitter-data-with-python-part-4-rugby-and-term-co-occurrences/
 
 Positive and negative word libraries came from the following:
 
