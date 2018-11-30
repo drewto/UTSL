@@ -19,5 +19,7 @@ $
 ’
 “
 ”
+k
+K
 trump
 Trump

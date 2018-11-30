@@ -8,11 +8,15 @@ else
 	echo "virtualenv already installed"
 fi
 
-python3 -m virtualenv env
+if [ ! -d "env" ]; then
+	python3 -m virtualenv env
+fi
 source env/bin/activate
 
-python3 -m pip install progress
-python3 -m pip install tweepy
+python3 -m -q pip install progress
+python3 -m -q pip install tweepy
+python3 -m -q pip install nltk
 
-python3 scrape_tweets.py 1000
-python3 preprocess_tweets.py
+echo "Press crtl+c when you think you have enough tweets. It will then go and process them."
+python3 scrape_tweets.py
+python3 process_tweets.py
