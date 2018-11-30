@@ -12,8 +12,14 @@ Usage:
 2. open 'config_files/scrape_words.txt' and add the terms you would like to search for, one line per term
 3. run './run_code' OR './run_code [# of tweets you want to analyze]'
 
+NOTE: You must have your own twitter developer account and app registered in order to use this (sorry but I'm not sharing my keys)
 
+Create a key file named "creds.txt" that looks like the following in the UTSL directory:
 
+	consumer_key:[consumer key]
+	consumer_secret:[consumer secret]
+	access_token:[access token]
+	access_secret:[access secret]
 
 
 
