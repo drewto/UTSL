@@ -10,4 +10,4 @@ Usage:
 
 1. Clone repo
 2. open 'config_files/scrape_words.txt' and add the terms you would like to search for, one line per term
-3. run './run_code'
+3. run './run_code' OR './run_code [# of tweets you want to analyze]'
