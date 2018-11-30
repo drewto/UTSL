@@ -2,12 +2,12 @@ import re
 import json
 from progress.bar import Bar
 import nltk
-#nltk.download('stopwords')
 from nltk.corpus import stopwords
 import string
 from collections import defaultdict
 import operator
 import math
+import os.path
 
  
 
@@ -136,6 +136,10 @@ def compute_semantic_orientation(pmi, p_t):
 	return semantic_orientation
 
 def main():
+	if os.path.exists(file_path) == False:
+		nltk.download('stopwords')
+
+
 	# Set filenames...
 	input_filename = "data_files/scraped_tweets.json"
 	preprocess_stop_terms_filename = "config_files/preprocess_stop_terms.txt"
