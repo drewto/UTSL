@@ -28,6 +28,7 @@ The output of this program comes in a few parts, all of which are saved in the '
 'scrape_tweets.py'
 
 The 'scrape_tweets.py' program scraped Tweets from Twitter using Tweepy and saves them to 'UTSL/data_files/scraped_tweets.json'. These tweets are not the full JSON downloaded from Tweepy, but a stripped-down version containing the following information (if available in the original Tweet): 
+	
 	1. user_id
 	2. user_name
 	3. user_screen_name
