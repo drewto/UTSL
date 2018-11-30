@@ -41,7 +41,7 @@ def main():
 	top_neg = tweet_sentiment_sorted[-5:]
 	top_neg.reverse()
 	
-	sorted_sentiments_file = open("data_files/sorted_sentiments_text.txt","w+")
+	sorted_sentiments_file = open("data_files/tweet_texted_sorted_by_sentiment.txt","w+")
 	for item in tweet_sentiment_sorted:
 		(tweet, rating) = item
 		new_text = []

@@ -211,7 +211,7 @@ def main():
 		(word, rating) = item
 		print(word + ": " + str(rating))
 
-	f = open("data_files/term_frequencies.txt", "w+")
+	f = open("data_files/term_semantic_orientation", "w+")
 	for (word,rating) in semantic_sorted:
 		f.write(word+" "+str(rating)+"\n")
 

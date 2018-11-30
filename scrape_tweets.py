@@ -75,12 +75,12 @@ def prune_data(data):
 	if 'retweeted_status' in json_data:
 		new_json_data['text'] = json_data['retweeted_status']['extended_tweet']['full_text'].rstrip()
 	elif 'text' not in json_data:
+		print("test not in json")
 		return 0
 	elif json_data['truncated'] == True:
 		new_json_data['text'] = json_data['extended_tweet']['full_text']
 	else: 
 		new_json_data['text'] = json_data['text'].rstrip()
-
 	# Extract user stuff
 	new_json_data['user_id'] = json_data['user']['id']
 	new_json_data['user_name'] = json_data['user']['name']
@@ -94,7 +94,7 @@ def prune_data(data):
 	new_json_data['place'] = json_data['place']
 
 	# Save the resulting tweet to a file
-	with open('data_files/scraped_tweets.json', 'a') as f:
+	with open('data_files/scraped_tweets.json', 'a+') as f:
 		f.write(json.dumps(new_json_data)+'\n')
 
 def main():
