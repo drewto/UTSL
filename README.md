@@ -10,7 +10,13 @@ Usage:
 
 1. Clone repo
 2. open 'config_files/scrape_words.txt' and add the terms you would like to search for, one line per term
-3. run './run_code' OR './run_code [# of tweets you want to analyze]'
+3. run one of the following:
+
+		./run_code 
+	OR 
+
+		./run_code [tweet_count]
+	where [tweet_count] is the number of tweets you wish to collect before analyzing them
 
 NOTE: You must have your own twitter developer account and app registered in order to use this (sorry but I'm not sharing my keys)
 
