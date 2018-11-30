@@ -16,9 +16,9 @@ else
 fi
 source env/bin/activate
 
-python3 -m -q pip install progress
-python3 -m -q pip install tweepy
-python3 -m -q pip install nltk
+python3 -m pip -q install progress
+python3 -m pip -q install tweepy
+python3 -m pip -q install nltk
 
 #rm data_files/scraped_tweets.json
 echo "Press crtl+c when you think you have enough tweets. It will then go and process them."

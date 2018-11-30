@@ -7,10 +7,11 @@ import json
 from progress.bar import Bar
 from progress.counter import Counter
 
-consumer_key = '4gzBY6Jmym4x42KIuQo9L4urQ'
-consumer_secret = 'pSAhz09Q6OhI4f4XuP0Q87TzQV8aZHR6tgn0zgzTHGuiDIDeut'
-access_token = '27372243-fMxHce6RVTID2Ykj02GmxrhGrFpmuTlLAzFr7FS1Y'
-access_secret = 'lotydcEqecC9phanNP56P2jtsdgX9fwQLLYeRgVxJjE5n'
+
+consumer_key = ''
+consumer_secret = ''
+access_token = ''
+access_secret = ''
 
 tweet_count = 0
 max_tweet_count = 0
@@ -95,7 +96,28 @@ def prune_data(data):
 		f.write(json.dumps(new_json_data)+'\n')
 
 def main():
+	# Set creds up
+	try:
+		f = open("creds.txt")
+		for line in f:
+			word = line.split(":")
+			if word[0] == 'consumer_key':
+				consumer_key = word[1].rstrip()
+			elif word[0] == 'consumer_secret':
+				consumer_secret = word[1].rstrip()
+			elif word[0] == 'access_token':
+				access_token = word[1].rstrip()
+			elif word[0] == 'access_secret':
+				access_secret = word[1].rstrip()
 
+	except BaseException as e:
+		print(str(e))
+		print("Error! Please set up a credential file in 'creds.txt' like the example below:")
+		print("\tconsumer_key: [consumer_key]")
+		print("\tconsumer_secret: [consumer_secret]")
+		print("\taccess_token: [access_token]")
+		print("\taccess_secret: [access_secret]")
+	
 	# API initial connection and setup
 	auth = OAuthHandler(consumer_key, consumer_secret)
 	auth.set_access_token(access_token, access_secret)
