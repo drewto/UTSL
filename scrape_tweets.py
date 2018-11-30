@@ -21,11 +21,12 @@ class MyListener(StreamListener):
 	def __init__(self):
 		super().__init__()
 		self.counter = 0
-		self.run_forever = False
+		self.run_forever = True
+		self.limit = 0
 		if len(sys.argv) > 1:
 			# No user-provided value, run forever
 			self.limit = int(sys.argv[1])
-			self.run_forever = True
+			self.run_forever = False
 			self.bar = Bar('Collecting tweets...',max=self.limit)
 
 		else:
@@ -39,11 +40,10 @@ class MyListener(StreamListener):
 				prune_data(data)
 				self.counter += 1
 				self.bar.next()
-			if (self.limit > self.counter):
-				return True
-			elif (self.run_forever == False):
-				self.bar.finish()
-				exit(1)
+			if (self.run_forever == False):
+				if self.limit == self.counter:
+					self.bar.finish()
+					exit(1)
 			else:
 				return True
 
@@ -128,4 +128,7 @@ def main():
 	
 
 if __name__ == '__main__':
-	main()
+	try:
+		main()
+	except KeyboardInterrupt:
+		sys.exit(0)

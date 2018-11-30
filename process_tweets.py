@@ -98,7 +98,7 @@ def compute_probability_of_term(single_count, com, file_length):
 	return (p_t, p_t_com)
 
 def compute_pmi(p_t, p_t_com, com):
-	bar = Bar('Compute Pointwise Mutual Information (PMI)...', max = len(p_t))
+	bar = Bar('Compute pointwise mutual information (PMI)...', max = len(p_t))
 	pmi = defaultdict(lambda : defaultdict(int))
 	for t1 in p_t:
 		for t2 in com[t1]:

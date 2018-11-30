@@ -21,7 +21,14 @@ python3 -m pip -q install tweepy
 python3 -m pip -q install nltk
 
 #rm data_files/scraped_tweets.json
-echo "Press crtl+c when you think you have enough tweets. It will then go and process them."
-python3 scrape_tweets.py
-clear
+
+if [[ $# -eq 0 ]]; then
+	echo "Press crtl+c when you think you have enough tweets. It will then go and process them."
+	python3 scrape_tweets.py
+	echo ""
+else
+	python3 scrape_tweets.py $1
+fi
+
 python3 process_tweets.py
+
