@@ -53,7 +53,7 @@ def preprocess(s, stop_terms, lowercase=True):
 		tokens = [token if emoticon_re.search(token) else token.lower() for token in tokens]
 	new_tokens = []
 	for token in tokens:
-		if ((token not in stop_terms) and (not token.startswith(('#','@','https://t.co/')))):
+		if ((token not in stop_terms) and (not token.startswith(('#','@','https://t.co/'))) and (not token == 'amp')):
 			new_tokens.append(token)
 	return new_tokens
 
@@ -190,23 +190,23 @@ def main():
 	pmi = compute_pmi(p_t, p_t_com, com)
 	semantic_orientation = compute_semantic_orientation(pmi, p_t)
 	semantic_sorted = sorted(semantic_orientation.items(),key=operator.itemgetter(1), reverse=True)
-	top_pos = semantic_sorted[:10]
-	top_neg = semantic_sorted[-10:]
+	top_pos = semantic_sorted[:5]
+	top_neg = semantic_sorted[-5:]
 	top_neg.reverse()
 	
-	print("Top positive terms associated with the search term:\nword: rating")
+	print("\nTop positive terms associated with the search term:\nword: rating")
 	for item in top_pos:
 		(word, rating) = item
 		print(word + ": " + str(rating))
 
-	print("Top negative terms associated with the search term:\nword: rating")
+	print("\nTop negative terms associated with the search term:\nword: rating")
 	for item in top_neg:
 		(word, rating) = item
 		print(word + ": " + str(rating))
 
 	f = open("data_files/term_frequencies.txt", "w+")
-	for item in semantic_orientation.items():
-		f.write(json.dumps(item))
+	for (word,rating) in semantic_sorted:
+		f.write(word+" "+str(rating)+"\n")
 
 if __name__ == '__main__':
 	main()

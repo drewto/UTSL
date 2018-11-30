@@ -72,8 +72,8 @@ def prune_data(data):
 	new_json_data = {}
 
 	# Extract the full text
-	if 'extended_tweet' in json_data:
-		new_json_data['text'] = json_data['extended_tweet']['full_text']
+	if 'retweeted_status' in json_data:
+		new_json_data['text'] = json_data['retweeted_status']['extended_tweet']['full_text']
 	elif 'text' not in json_data:
 		return 0
 	else: 
@@ -124,7 +124,7 @@ def main():
 	print("scrape words (search terms):")
 	for word in scrape_words:
 		print("\t- " + word)
-		
+
 	# API initial connection and setup
 	auth = OAuthHandler(consumer_key, consumer_secret)
 	auth.set_access_token(access_token, access_secret)

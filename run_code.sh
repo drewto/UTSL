@@ -31,4 +31,5 @@ else
 fi
 
 python3 process_tweets.py
+python3 calculate_tweet_sentiment.py
 
