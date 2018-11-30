@@ -139,16 +139,19 @@ def main():
 	if os.path.exists(file_path) == False:
 		nltk.download('stopwords')
 
-
 	# Set filenames...
 	input_filename = "data_files/scraped_tweets.json"
 	preprocess_stop_terms_filename = "config_files/preprocess_stop_terms.txt"
 
+	if (os.path.exists(input_filename) == False):
+		exit(0)
 	# Generate stop terms...
 	stop_terms = generate_stop_terms(preprocess_stop_terms_filename)
 
 	# Set up the progress bar...
 	file_length = file_len(input_filename)
+	if (file_length == 0):
+		exit(0)
 	bar = Bar('Pre-processing tweets...', max=file_length)
 
 	# Open the file to begin reading...

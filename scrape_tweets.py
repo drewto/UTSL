@@ -117,7 +117,7 @@ def main():
 		print("\tconsumer_secret: [consumer_secret]")
 		print("\taccess_token: [access_token]")
 		print("\taccess_secret: [access_secret]")
-	
+		exit(0)
 	# API initial connection and setup
 	auth = OAuthHandler(consumer_key, consumer_secret)
 	auth.set_access_token(access_token, access_secret)
