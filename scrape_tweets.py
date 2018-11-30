@@ -61,7 +61,7 @@ def read_scrape_words(filename):
 	scrape_words = []
 	file = open(filename, "r")
 	for line in file:
-		scrape_words.append(line)
+		scrape_words.append(line.rstrip())
 	return scrape_words
 
 def prune_data(data):
@@ -124,6 +124,9 @@ def main():
 	api = tweepy.API(auth)
 	twitter_stream = Stream(auth, MyListener())
 	scrape_words = read_scrape_words("config_files/scrape_words.txt")
+	print("scrape words (search terms):")
+	for word in scrape_words:
+		print("\t- " + word)
 	twitter_stream.filter(track=scrape_words)
 	
 

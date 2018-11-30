@@ -186,6 +186,7 @@ def main():
 	semantic_sorted = sorted(semantic_orientation.items(),key=operator.itemgetter(1), reverse=True)
 	top_pos = semantic_sorted[:10]
 	top_neg = semantic_sorted[-10:]
+	top_neg.reverse()
 	
 	print("Top positive terms associated with the search term:\nword: rating")
 	for item in top_pos:
