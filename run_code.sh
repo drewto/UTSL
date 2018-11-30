@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+clear
 if [ `python3 -m virtualenv --version | grep "No module named" | wc -l` -gt 0 ];
 then 
 	echo "virtualenv not installed, installing it now..."
