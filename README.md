@@ -18,7 +18,9 @@ Usage:
 		./run_code [tweet_count]
 	where [tweet_count] is the number of tweets you wish to collect before analyzing them
 
-NOTE: You must have your own twitter developer account and app registered in order to use this (sorry but I'm not sharing my keys)
+TWEEPY CREDENTIALS: When run all at once, this project will attempt to download tweets from Twitter using the Tweepy API. In order to do this, it must read a file called "creds.txt" to get these credentials. You must have your own twitter developer account and app registered in order to use this (sorry but I'm not sharing my keys)
+
+However, if you already have tweets stored in a .json file that you wish to analyze, simply make modifications to process_tweets.py to direct it to your .json file and things might work (unsure, not tested) and you will not need to do any of the following
 
 Create a key file named "creds.txt" that looks like the following in the UTSL directory:
 
