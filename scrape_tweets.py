@@ -19,6 +19,9 @@ class MyListener(StreamListener):
 	def __init__(self):
 		super().__init__()
 		self.counter = 0
+		if len(sys.argv) < 2:
+			print("Error: Incorrect usage\nUsage: python3 scrape_tweets.py [# of tweets to scrape]")
+			exit(0)
 		self.limit = int(sys.argv[1])
 		self.bar = Bar('Collecting tweets...',max=self.limit)
 
@@ -36,7 +39,7 @@ class MyListener(StreamListener):
 		except BaseException as e:
 			if str(e) == "1":
 				exit(0)
-			print("Error on_data: %s" % str(e))
+			#print("Error on_data: %s" % str(e))
 		return True
  
 	def on_error(self, status):
@@ -79,7 +82,7 @@ def prune_data(data):
 		new_json_data['place'] = json_data['place']
 
 		# Save the resulting tweet to a file
-		with open('scraped_tweets.json', 'a') as f:
+		with open('data_files/scraped_tweets.json', 'a') as f:
 			f.write(json.dumps(new_json_data)+'\n')
 
 def main():
@@ -89,9 +92,10 @@ def main():
 	auth.set_access_token(access_token, access_secret)
 	api = tweepy.API(auth)
 	twitter_stream = Stream(auth, MyListener())
+	if sys.argv[1] == "":
+		sys.argv[1] = 100
 
-
-	scrape_words = read_scrape_words("scrape_words.txt")
+	scrape_words = read_scrape_words("config_files/scrape_words.txt")
 	twitter_stream.filter(track=scrape_words)
 	
 

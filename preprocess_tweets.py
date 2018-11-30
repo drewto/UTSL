@@ -40,7 +40,7 @@ def find_url(string):
     url = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+] |[!*\(\), ]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', string) 
     return url 
 
-def preprocess(s, lowercase=False):
+def preprocess(s, preprocess_stop_terms_filename, lowercase=False):
 	tokens = tokenize(s)
 	if lowercase:
 		tokens = [token if emoticon_re.search(token) else token.lower() for token in tokens]
@@ -48,7 +48,7 @@ def preprocess(s, lowercase=False):
 	# Now that we have the tokens, lets do what we want with it all
 	
 	# First, remove all of the stop terms (tokenized items we do not want)
-	f = open("preprocess_stop_terms.txt", "r")
+	f = open(preprocess_stop_terms_filename, "r")
 	stop_terms = []
 	for line in f:
 		stop_terms.append(line.rstrip())
@@ -87,14 +87,18 @@ def preprocess(s, lowercase=False):
 
 
 def main():
-	file_length = file_len("scraped_tweets.json")
-	file = open("scraped_tweets.json", "r")
+	input_filename = "data_files/scraped_tweets.json"
+	output_filename = "data_files/preprocessed_tweets.json"
+	preprocess_stop_terms_filename = "config_files/preprocess_stop_terms.txt"
+
+	file_length = file_len(input_filename)
+	file = open(input_filename, "r")
 	bar = Bar('Pre-processing tweets...', max=file_length)
-	outfile = open("preprocessed_tweets.json", "w")
+	outfile = open(output_filename, "w")
 	for tweet in file:
 		tweet_data = json.loads(tweet)
 		text = tweet_data['text']
-		new_text = preprocess(text)
+		new_text = preprocess(text, preprocess_stop_terms_filename)
 		tweet_data['text'] = " ".join(new_text)
 		outfile.write(json.dumps(tweet_data))
 		bar.next()
