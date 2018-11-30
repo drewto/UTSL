@@ -13,7 +13,7 @@ source env/bin/activate
 
 python3 -m pip install progress
 python3 -m pip install tweepy
+python3 -m pip install nltk
 
-clear
-echo "Setup complete, virtualenv created and packages installed"
-echo "Before running the program, please type 'source env/bin/active' to access the virtualenv that has been created."
+python3 scrape_tweets.py 1000
+python3 preprocess_tweets.py

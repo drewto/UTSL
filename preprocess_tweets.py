@@ -1,6 +1,14 @@
 import re
 import json
 from progress.bar import Bar
+import nltk
+nltk.download('stopwords')
+from nltk.corpus import stopwords
+import string
+from collections import defaultdict
+import operator
+
+ 
 
 emoticons_str = r"""
 	(?:
@@ -26,84 +34,87 @@ tokens_re = re.compile(r'('+'|'.join(regex_str)+')', re.VERBOSE | re.IGNORECASE)
 emoticon_re = re.compile(r'^'+emoticons_str+'$', re.VERBOSE | re.IGNORECASE)
  
 def file_len(fname):
-    with open(fname) as f:
-        for i, l in enumerate(f):
-            pass
-    return i + 1
+	with open(fname) as f:
+		for i, l in enumerate(f):
+			pass
+	return i + 1
 
 def tokenize(s):
 	return tokens_re.findall(s)
  
 def find_url(string): 
-    # findall() has been used  
-    # with valid conditions for urls in string 
-    url = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+] |[!*\(\), ]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', string) 
-    return url 
+	url = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+] |[!*\(\), ]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', string) 
+	return url 
 
-def preprocess(s, preprocess_stop_terms_filename, lowercase=False):
+def preprocess(s, stop_terms, lowercase=False):
 	tokens = tokenize(s)
 	if lowercase:
 		tokens = [token if emoticon_re.search(token) else token.lower() for token in tokens]
-	
-	# Now that we have the tokens, lets do what we want with it all
-	
-	# First, remove all of the stop terms (tokenized items we do not want)
+	new_tokens = []
+	for token in tokens:
+		if ((token not in stop_terms) and (not token.startswith(('#','@')))):
+			new_tokens.append(token)
+	return new_tokens
+
+def generate_stop_terms(preprocess_stop_terms_filename):
+	punctuation = list(string.punctuation)
+	stop = stopwords.words('english') + punctuation + ['rt', 'via']
 	f = open(preprocess_stop_terms_filename, "r")
 	stop_terms = []
 	for line in f:
 		stop_terms.append(line.rstrip())
-	for term in stop_terms:
-		term_in_tokens = 1
-		while(term_in_tokens == 1):
-			if term in tokens:
-				tokens.remove(term)
-			else:
-				term_in_tokens = 0
-
-	# Remove the URLs
-	url_in_tokens = 1
-	while url_in_tokens == 1:
-		url_in_tokens = 0
-		for token in tokens:
-			if len(find_url(token)) > 0:
-				tokens.remove(token)
-				url_in_tokens = 1
-
-	# Remove mentions 
-	mention_in_tokens = 1
-	while mention_in_tokens == 1:
-		mention_in_tokens = 0
-		for token in tokens:
-			if token[0] == '@':
-				tokens.remove(token)
-				mention_in_tokens = 1
-
-	for i in range(len(tokens)):
-		if tokens[i][0] == '#':
-			tokens[i] = tokens[i][1:]
-
-	return tokens
- 	
-
+	stop_terms += stop
+	return stop_terms
 
 def main():
+	# Set filenames...
 	input_filename = "data_files/scraped_tweets.json"
 	output_filename = "data_files/preprocessed_tweets.json"
 	preprocess_stop_terms_filename = "config_files/preprocess_stop_terms.txt"
 
+	# Generate stop terms...
+	stop_terms = generate_stop_terms(preprocess_stop_terms_filename)
+
+	# Set up the progress bar...
 	file_length = file_len(input_filename)
-	file = open(input_filename, "r")
 	bar = Bar('Pre-processing tweets...', max=file_length)
-	outfile = open(output_filename, "w")
+
+	# Open the files to begin reading and writing...
+	file = open(input_filename, "r")
+	#outfile = open(output_filename, "w")
+
+	# Create the co-occurances matrix
+	com = defaultdict(lambda : defaultdict(int))
+		
+
+	# Iterate through the tweets and process them
 	for tweet in file:
 		tweet_data = json.loads(tweet)
 		text = tweet_data['text']
-		new_text = preprocess(text, preprocess_stop_terms_filename)
-		tweet_data['text'] = " ".join(new_text)
-		outfile.write(json.dumps(tweet_data))
-		bar.next()
+		terms_only = preprocess(text, stop_terms)
+		for i in range(len(terms_only)-1):
+			for j in range(i+1, len(terms_only)):
+				w1, w2 = sorted([terms_only[i], terms_only[j]])				
+				if w1 != w2:
+					com[w1][w2] += 1
 
+		#tweet_data['text'] = " ".join(new_text)
+		#outfile.write(json.dumps(tweet_data))
+		bar.next()
 	bar.finish()
+
+	bar = Bar('Searching for co-occurances...', max = len(com))
+	com_max = []
+	# For each term, look for the most common co-occurrent terms
+	for t1 in com:
+		t1_max_terms = sorted(com[t1].items(), key=operator.itemgetter(1), reverse=True)[:5]
+		for t2, t2_count in t1_max_terms:
+			com_max.append(((t1, t2), t2_count))
+		bar.next()
+	bar.finish()
+	# Get the most frequent co-occurrences
+	terms_max = sorted(com_max, key=operator.itemgetter(1), reverse=True)
+	print(terms_max[:15])
 
 if __name__ == '__main__':
 	main()
