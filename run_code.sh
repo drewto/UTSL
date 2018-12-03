@@ -12,7 +12,7 @@ if [ ! -d "env" ]; then
 	echo "creating virtual env"
 	python3 -m virtualenv env
 else
-	echo "virtualenv already exists"
+	echo "env already exists"
 fi
 source env/bin/activate
 
@@ -32,4 +32,11 @@ fi
 
 python3 process_tweets.py
 python3 calculate_tweet_sentiment.py
+python3 perceptron.py
 
+while true; do
+	tweet=`python3 single_tweet_scrape.py`
+	echo $tweet
+	python3 process_single_tweet.py $tweet
+	sleep 3
+done

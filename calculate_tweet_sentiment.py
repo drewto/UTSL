@@ -9,7 +9,7 @@ def file_len(fname):
 	return i + 1
 
 def main():
-	term_frequencies_filename = "data_files/term_frequencies.txt"
+	term_frequencies_filename = "data_files/term_semantic_orientation.txt"
 	tweets_file_filename = "data_files/scraped_tweets.json"
 	sentiment_tweets_output_filename = "data_files/tweets_with_sentiment.json"
 	term_frequencies = open(term_frequencies_filename, "r")
@@ -41,9 +41,15 @@ def main():
 	top_neg = tweet_sentiment_sorted[-5:]
 	top_neg.reverse()
 	
+	pos_tweet_count = 0
+	neg_tweet_count = 0
 	sorted_sentiments_file = open("data_files/tweet_texted_sorted_by_sentiment.txt","w+")
 	for item in tweet_sentiment_sorted:
 		(tweet, rating) = item
+		if rating > 1:
+			pos_tweet_count += 1
+		if rating < -1:
+			neg_tweet_count += 1
 		new_text = []
 		for word in tweet.split(" "):
 			if word == '&gt;':
@@ -57,9 +63,21 @@ def main():
 		tweet = " ".join(new_text)
 		sorted_sentiments_file.write(str(rating) + ": " + tweet + '\n\n\n')
 	print("The overall sentiment regarding your search terms is: " + str(overall_sentiment))
+	sorted_sentiments_file.close()
 
-
-
+	f_data = open("data_files/perceptron_traindata.json", "w+")
+	(pos_tweet, pos_rating) = tweet_sentiment_sorted[0]
+	(neg_tweet, neg_rating) = tweet_sentiment_sorted[-1]
+	pos_threshold = 1
+	neg_threshold = -1
+	perceptron_data = {}
+	for (tweet,rating) in tweet_sentiment_sorted:
+		if rating > pos_threshold:
+			perceptron_data[tweet] = 1
+		if rating < neg_threshold:
+			perceptron_data[tweet] = 0
+	f_data.write(json.dumps(perceptron_data))
+	f_data.close()
 
 if __name__ == "__main__":
 	main()

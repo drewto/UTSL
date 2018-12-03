@@ -93,6 +93,7 @@ def compute_probability_of_term(single_count, com, file_length):
 	# Computer the probability of each term occuring
 	# file_length is the total n. of tweets
 	# p_t is the probability of the term being in a tweet
+	# p_t_com is the probability of a term given another term
 	p_t = {}
 	p_t_com = defaultdict(lambda : defaultdict(int))
 	
@@ -131,7 +132,6 @@ def compute_semantic_orientation(pmi, p_t):
 			negative_vocab.append(line.rstrip())
 	negative_vocab = [token.lower() for token in negative_vocab]
 	f.close()
-	
 	bar = Bar('Computing semantic orientation...', max = len(p_t))
 	semantic_orientation = {}
 	for term, n in p_t.items():
@@ -201,17 +201,17 @@ def main():
 	top_neg = semantic_sorted[-5:]
 	top_neg.reverse()
 	
-	print("\nTop positive terms associated with the search term:")
+	#print("\nTop positive terms associated with the search term:")
 	for item in top_pos:
 		(word, rating) = item
-		print(word + ": " + str(rating))
+		#print(word + ": " + str(rating))
 
-	print("\nTop negative terms associated with the search term:")
+	#print("\nTop negative terms associated with the search term:")
 	for item in top_neg:
 		(word, rating) = item
-		print(word + ": " + str(rating))
+		#print(word + ": " + str(rating))
 
-	f = open("data_files/term_semantic_orientation", "w+")
+	f = open("data_files/term_semantic_orientation.txt", "w+")
 	for (word,rating) in semantic_sorted:
 		f.write(word+" "+str(rating)+"\n")
 

@@ -4,7 +4,7 @@ Unsupervised Twitter Sentiment Learner
 
 This project was built to explore what people are thinking about certain topics, using Twitter to collect the data.
 
-By specifying search terms in config_files/scrape_words.txt and running './run_code', you will be able to see what words people associate with your search terms, sorted by positive and negative association.
+By specifying search terms in config_files/scrape_words.txt and running './run_code', you will be able to see what words people associate with your search terms, sorted by positive and negative association. Along with this, you will be able track live data regarding the status and current sentiment of your search terms.
 
 Usage:
 
@@ -23,6 +23,7 @@ Usage:
 Output:
 
 The output of this program comes in a few parts, all of which are saved in the 'UTSL/data_files/' directory.
+It will also show a real-time CLI-based dashboard showing information about your search terms.
 
 
 'scrape_tweets.py'
@@ -48,8 +49,15 @@ The 'scrape_tweets.py' program scraped Tweets from Twitter using Tweepy and save
 
 'calculate_tweet_sentiment.py'
 
-This program loads up the semantic orientation file created in 'process_tweets.py' and then simply iterates through the scraped tweets saved by 'scrape_tweets.py', coming up with a sentiment value by adding all of the sentiment of the words in the text. If this value is higher than 0, the tweet is predicted to be positive. If the sentiment value is lower than 0, it is predicted to have negative sentiment. 
+This program loads up the semantic orientation file created in 'process_tweets.py' and then simply iterates through the scraped tweets saved by 'scrape_tweets.py', coming up with a sentiment value by adding all of the sentiment of the words in the text. If this value is higher than 0, the tweet is predicted to be positive. If the sentiment value is lower than 0, it is predicted to have negative sentiment. This program also outputs the data required to drive 'perceptron.py' by testing to see if a tweet has sentiment above or below certain thresholds. If the tweet is above the positive threshold, we will label it as 1. If the tweet is abelow the negative threshold, we will label it as 0. This program then generates the files 'data_files/perceptron_traindata.txt' and 'data_files/perceptron_trainlabels.txt' for use in 'perceptron.py'
 
+'perceptron.py'
+
+This program inputs labeled training data, performs the Perceptron algorithm on it, and outputs a list of weights for use in 'online_analyzer.py' to classify tweets on the fly. 
+
+
+
+This program will 
 
 NOTE: While this project does use external libraries like tweepy, progress, and nltk, the run_code script will create a virtualenv to download these libraries so it doesn't add unecessary packages to your computer's python environment. Be warned, however: one thing it does install by default is virtualenv.
 
